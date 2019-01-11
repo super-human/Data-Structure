@@ -98,11 +98,14 @@ void list::insertatlocation(int data,int p)
 void list::display()
 {
 	node *ptr=head;
+	int count=0;
 	while(ptr!=NULL)
 	{
 		cout<<ptr->data<<endl;
 		ptr=ptr->next;
+		count++;
 	}
+	cout<<"Length of linked list: "<<count<<endl;
 }
 int list::delete_firstnode()
 {
