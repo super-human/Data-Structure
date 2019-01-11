@@ -24,6 +24,7 @@ public:
 	int delete_lastnode();
 	int delete_intermediatenode(int);
 	void display();
+	void delete_linkedlist();
 };
 void list::insertatbegin(int data)
 {
@@ -174,6 +175,19 @@ int list::delete_intermediatenode(int pos)
 	}
 }
 
+void list::delete_linkedlist()
+{
+	node *current,*ptr;
+	current = head;
+	while(current!=NULL)
+	{
+		ptr=current;
+		current=current->next;
+		free(ptr);
+	}
+	head=NULL;
+}
+
 int main()
 {
 	int ch,data,pos;
@@ -181,7 +195,7 @@ int main()
 	while(1)
 	{
 		cout<<"\n**** MENU ****"<<endl;
-        cout<<"1:INSERT_AT_BEGIN\n2:INDERT_AT_LAST\n3:INSERT_AT_LOCATION\n4:DELETE_FIRST_NODE\n5:DELETE_LASTNODE\n6:DELETE_INTERMEDIATENODE\n7:DISPLAY\n8:EXIT\n";
+        cout<<"1:INSERT_AT_BEGIN\n2:INDERT_AT_LAST\n3:INSERT_AT_LOCATION\n4:DELETE_FIRST_NODE\n5:DELETE_LASTNODE\n6:DELETE_INTERMEDIATENODE\n7:DISPLAY\n8:DELETE LINKED LIST \n9:EXIT\n";
         cout<<"\nEnter Your Choice:";
         cin>>ch;
         switch(ch)
@@ -205,7 +219,9 @@ int main()
         			break;
         	case 7: l.display();
         			break;
-        	case 8: return 0;
+        	case 8: l.delete_linkedlist();
+        			break;
+        	case 9: return 0;
 
         }
 	}
