@@ -25,6 +25,7 @@ public:
 	int delete_intermediatenode(int);
 	void display();
 	void delete_linkedlist();
+	void search_element(int);
 };
 void list::insertatbegin(int data)
 {
@@ -191,6 +192,21 @@ void list::delete_linkedlist()
 	head=NULL;
 }
 
+void list::search_element(int x)
+{
+	node *ptr=head;
+	while(ptr!=NULL)
+	{
+		if(ptr->data==x)
+		{
+			cout<<"Element Found"<<endl;
+			return;
+		}
+		ptr=ptr->next;	
+	}
+	cout<<"Element not Found"<<endl;
+}
+
 int main()
 {
 	int ch,data,pos;
@@ -198,7 +214,7 @@ int main()
 	while(1)
 	{
 		cout<<"\n**** MENU ****"<<endl;
-        cout<<"1:INSERT_AT_BEGIN\n2:INSERT_AT_LAST\n3:INSERT_AT_LOCATION\n4:DELETE_FIRST_NODE\n5:DELETE_LASTNODE\n6:DELETE_INTERMEDIATENODE\n7:DISPLAY\n8:DELETE LINKED LIST \n9:EXIT\n";
+        cout<<"1:INSERT_AT_BEGIN\n2:INDERT_AT_LAST\n3:INSERT_AT_LOCATION\n4:DELETE_FIRST_NODE\n5:DELETE_LASTNODE\n6:DELETE_INTERMEDIATENODE\n7:DISPLAY\n8:DELETE LINKED LIST \n9:SEARCH_ELEMENT\n10:EXIT\n";
         cout<<"\nEnter Your Choice:";
         cin>>ch;
         switch(ch)
@@ -224,8 +240,10 @@ int main()
         			break;
         	case 8: l.delete_linkedlist();
         			break;
-        	case 9: return 0;
-
+        	case 9: cin>>data;
+        			l.search_element(data);
+        			break;
+        	case 10: return 0;
         }
 	}
 	return 0;
