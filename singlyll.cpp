@@ -26,6 +26,8 @@ public:
 	void display();
 	void delete_linkedlist();
 	void search_element(int);
+	void get_node(int);
+	void get_node_from_end(int);
 };
 void list::insertatbegin(int data)
 {
@@ -207,6 +209,66 @@ void list::search_element(int x)
 	cout<<"Element not Found"<<endl;
 }
 
+void list::get_node(int pos)
+{
+	node *ptr=head;
+	int k=1;
+	if(head==NULL)
+	{
+		cout<<"No list found"<<endl;
+		return;
+	}
+	while(ptr!=NULL && k<pos)
+	{
+		k++;
+		ptr=ptr->next;
+	}
+	if(k==pos)
+	{
+		cout<<ptr->data<<endl;
+		return;
+	}
+	else
+	{
+		cout<<"Wrong position"<<endl;
+		return;
+	}
+}
+
+void list::get_node_from_end(int pos)
+{
+	node *ptr=head;
+	int k=1,count=0;
+	if(head==NULL)
+	{
+		cout<<"No list found"<<endl;
+		return;
+	}
+	while(ptr!=NULL)
+	{
+		count++;
+		ptr=ptr->next;
+	}
+	k=count-pos;
+	ptr=head;
+	pos=1;
+	while(ptr!=NULL && pos<k)
+	{
+		pos++;
+		ptr=ptr->next;
+	}
+	if(k==pos)
+	{
+		cout<<ptr->data<<endl;
+		return;
+	}
+	else
+	{
+		cout<<"Wrong position"<<endl;
+		return;
+	}
+}
+
 int main()
 {
 	int ch,data,pos;
@@ -214,36 +276,43 @@ int main()
 	while(1)
 	{
 		cout<<"\n**** MENU ****"<<endl;
-        cout<<"1:INSERT_AT_BEGIN\n2:INDERT_AT_LAST\n3:INSERT_AT_LOCATION\n4:DELETE_FIRST_NODE\n5:DELETE_LASTNODE\n6:DELETE_INTERMEDIATENODE\n7:DISPLAY\n8:DELETE LINKED LIST \n9:SEARCH_ELEMENT\n10:EXIT\n";
+        cout<<"1:INSERT_AT_BEGIN\n2:INDERT_AT_LAST\n3:INSERT_AT_LOCATION\n4:DELETE_FIRST_NODE\n5:DELETE_LASTNODE\n6:DELETE_INTERMEDIATENODE\n7:DISPLAY\n8:DELETE LINKED LIST \n9:SEARCH_ELEMENT\n10:GET_NODE\n11:GET NODE FROM END\n12:EXIT\n";
         cout<<"\nEnter Your Choice:";
         cin>>ch;
         switch(ch)
         {
         	case 1: cin>>data;
-        			l.insertatbegin(data);
-        			break;
+        		l.insertatbegin(data);
+        		break;
         	case 2: cin>>data;
-        			l.insertatlast(data);
-        			break;
+        		l.insertatlast(data);
+        		break;
         	case 3: cin>>data;
-        			cin>>pos;
-        			l.insertatlocation(data,pos);
-        			break;
+        		cin>>pos;
+        		l.insertatlocation(data,pos);
+        		break;
         	case 4: cout<<l.delete_firstnode();
-        			break;
+        		break;
         	case 5: cout<<l.delete_lastnode();
-        			break;
+        		break;
         	case 6: cin>>pos;
-        			cout<<l.delete_intermediatenode(pos);
-        			break;
+        		cout<<l.delete_intermediatenode(pos);
+        		break;
         	case 7: l.display();
-        			break;
+        		break;
         	case 8: l.delete_linkedlist();
-        			break;
+        		break;
         	case 9: cin>>data;
-        			l.search_element(data);
-        			break;
-        	case 10: return 0;
+        		l.search_element(data);
+        		break;
+        	case 10: cin>>pos;
+        		 l.get_node(pos);
+        		 break;
+
+        	case 11: cin>>pos;
+        		 l.get_node_from_end(pos);
+        		 break;
+        	case 12: return 0;
         }
 	}
 	return 0;
