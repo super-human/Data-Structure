@@ -303,12 +303,30 @@ bool list::detect_loop()
 {
 	node *fast_ptr,*slow_ptr;
 	fast_ptr=slow_ptr=head;
+	int count=1,b=0;
 	while(fast_ptr!=NULL && fast_ptr->next!=NULL)
 	{
 		fast_ptr=fast_ptr->next->next;
 		slow_ptr=slow_ptr->next;
-		if(fast_ptr==slow_ptr)
-			return true;
+		if(b==0)
+		{
+			if(fast_ptr==slow_ptr)
+			{
+				b=1;
+				continue;
+			}
+			continue;			
+		}
+		
+		if(b==1)
+		{
+			if(fast_ptr==slow_ptr)
+			{
+				cout<<"Length of loop: "<<count<<endl;
+				return true;
+			}
+			count++;
+		}
 	}
 	return false;
 }
