@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include<stack>
 using namespace std;
 
 class node
@@ -31,6 +32,7 @@ public:
 	void middle_element();
 	void count_given_key(int);
 	bool detect_loop();
+	bool IsPalindrome();
 };
 void list::insertatbegin(int data)
 {
@@ -331,6 +333,26 @@ bool list::detect_loop()
 	return false;
 }
 
+bool list::IsPalindrome()
+{
+	node *ptr=head;
+	stack<int>s;
+	while(ptr!=NULL)
+	{
+		s.push(ptr->data);
+		ptr=ptr->next;
+	}
+	ptr=head;
+	while(ptr!=NULL)
+	{
+		if(ptr->data!=s.top())
+			return false;
+		ptr=ptr->next;
+		s.pop();
+	}
+	return true;
+}
+
 int main()
 {
 	int ch,data,pos,key;
@@ -338,7 +360,7 @@ int main()
 	while(1)
 	{
 		cout<<"\n**** MENU ****"<<endl;
-        cout<<"1:INSERT_AT_BEGIN\n2:INDERT_AT_LAST\n3:INSERT_AT_LOCATION\n4:DELETE_FIRST_NODE\n5:DELETE_LASTNODE\n6:DELETE_INTERMEDIATENODE\n7:DISPLAY\n8:DELETE LINKED LIST \n9:SEARCH_ELEMENT\n10:GET_NODE\n11:GET NODE FROM END\n12:GET_MIDDLE_ELEMENT\n13:COUNT_GIVEN_KEY\n14:DETECT_LOOP\n15:EXIT\n";
+        cout<<"1:INSERT_AT_BEGIN\n2:INDERT_AT_LAST\n3:INSERT_AT_LOCATION\n4:DELETE_FIRST_NODE\n5:DELETE_LASTNODE\n6:DELETE_INTERMEDIATENODE\n7:DISPLAY\n8:DELETE LINKED LIST \n9:SEARCH_ELEMENT\n10:GET_NODE\n11:GET NODE FROM END\n12:GET_MIDDLE_ELEMENT\n13:COUNT_GIVEN_KEY\n14:DETECT_LOOP\n15:CHECK_IF_PALINDROME\n16:EXIT\n";
         cout<<"\nEnter Your Choice:";
         cin>>ch;
         switch(ch)
@@ -384,7 +406,12 @@ int main()
         			 else
         			 	cout<<"Loop not Found"<<endl;
         			 break;
-        	case 15: return 0;
+        	case 15: if(l.IsPalindrome())
+        				cout<<"Is Palindrome"<<endl;
+        			 else
+        			 	cout<<"Not Palindrome"<<endl;
+        			 break;
+        	case 16: return 0;
         }
 	}
 	return 0;
