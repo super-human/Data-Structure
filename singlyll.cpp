@@ -30,6 +30,7 @@ public:
 	void get_node_from_end(int);
 	void middle_element();
 	void count_given_key(int);
+	bool detect_loop();
 };
 void list::insertatbegin(int data)
 {
@@ -298,6 +299,20 @@ void list::count_given_key(int key)
 	}
 }
 
+bool list::detect_loop()
+{
+	node *fast_ptr,*slow_ptr;
+	fast_ptr=slow_ptr=head;
+	while(fast_ptr!=NULL && fast_ptr->next!=NULL)
+	{
+		fast_ptr=fast_ptr->next->next;
+		slow_ptr=slow_ptr->next;
+		if(fast_ptr==slow_ptr)
+			return true;
+	}
+	return false;
+}
+
 int main()
 {
 	int ch,data,pos,key;
@@ -305,7 +320,7 @@ int main()
 	while(1)
 	{
 		cout<<"\n**** MENU ****"<<endl;
-        cout<<"1:INSERT_AT_BEGIN\n2:INDERT_AT_LAST\n3:INSERT_AT_LOCATION\n4:DELETE_FIRST_NODE\n5:DELETE_LASTNODE\n6:DELETE_INTERMEDIATENODE\n7:DISPLAY\n8:DELETE LINKED LIST \n9:SEARCH_ELEMENT\n10:GET_NODE\n11:GET NODE FROM END\n12:GET_MIDDLE_ELEMENT\n13:COUNT_GIVEN_KEY\n14:EXIT\n";
+        cout<<"1:INSERT_AT_BEGIN\n2:INDERT_AT_LAST\n3:INSERT_AT_LOCATION\n4:DELETE_FIRST_NODE\n5:DELETE_LASTNODE\n6:DELETE_INTERMEDIATENODE\n7:DISPLAY\n8:DELETE LINKED LIST \n9:SEARCH_ELEMENT\n10:GET_NODE\n11:GET NODE FROM END\n12:GET_MIDDLE_ELEMENT\n13:COUNT_GIVEN_KEY\n14:DETECT_LOOP\n15:EXIT\n";
         cout<<"\nEnter Your Choice:";
         cin>>ch;
         switch(ch)
@@ -346,7 +361,12 @@ int main()
         	case 13: cin>>key;
         			 l.count_given_key(key);
         			 break;
-        	case 14: return 0;
+        	case 14: if(l.detect_loop())
+        				cout<<"Loop Found"<<endl;
+        			 else
+        			 	cout<<"Loop not Found"<<endl;
+        			 break;
+        	case 15: return 0;
         }
 	}
 	return 0;
