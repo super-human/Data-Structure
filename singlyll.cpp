@@ -33,6 +33,7 @@ public:
 	void count_given_key(int);
 	bool detect_loop();
 	bool IsPalindrome();
+	void delete_duplicates_from_sortedll();
 };
 void list::insertatbegin(int data)
 {
@@ -353,6 +354,27 @@ bool list::IsPalindrome()
 	return true;
 }
 
+void list::delete_duplicates_from_sortedll()
+{
+	node *current,*ptr;
+	current=head;
+	if(head==NULL)
+		return;
+	while(current->next!=NULL)
+	{
+		if(current->data==current->next->data)
+		{
+			ptr=current->next->next;
+			free(current->next);
+			current->next=ptr;
+		}
+		else
+		{
+			current=current->next;
+		}
+	}
+}
+
 int main()
 {
 	int ch,data,pos,key;
@@ -360,7 +382,7 @@ int main()
 	while(1)
 	{
 		cout<<"\n**** MENU ****"<<endl;
-        cout<<"1:INSERT_AT_BEGIN\n2:INDERT_AT_LAST\n3:INSERT_AT_LOCATION\n4:DELETE_FIRST_NODE\n5:DELETE_LASTNODE\n6:DELETE_INTERMEDIATENODE\n7:DISPLAY\n8:DELETE LINKED LIST \n9:SEARCH_ELEMENT\n10:GET_NODE\n11:GET NODE FROM END\n12:GET_MIDDLE_ELEMENT\n13:COUNT_GIVEN_KEY\n14:DETECT_LOOP\n15:CHECK_IF_PALINDROME\n16:EXIT\n";
+        cout<<"1:INSERT_AT_BEGIN\n2:INDERT_AT_LAST\n3:INSERT_AT_LOCATION\n4:DELETE_FIRST_NODE\n5:DELETE_LASTNODE\n6:DELETE_INTERMEDIATENODE\n7:DISPLAY\n8:DELETE LINKED LIST \n9:SEARCH_ELEMENT\n10:GET_NODE\n11:GET NODE FROM END\n12:GET_MIDDLE_ELEMENT\n13:COUNT_GIVEN_KEY\n14:DETECT_LOOP\n15:CHECK_IF_PALINDROME\n16:DELETE_DUPLICATE_FROM_SORTED_LINKED_LIST\n17:EXIT\n";
         cout<<"\nEnter Your Choice:";
         cin>>ch;
         switch(ch)
@@ -411,7 +433,9 @@ int main()
         			 else
         			 	cout<<"Not Palindrome"<<endl;
         			 break;
-        	case 16: return 0;
+        	case 16: l.delete_duplicates_from_sortedll();
+        			 break;
+        	case 17: return 0;
         }
 	}
 	return 0;
