@@ -34,6 +34,7 @@ public:
 	bool detect_loop();
 	bool IsPalindrome();
 	void delete_duplicates_from_sortedll();
+	void swap_nodes_without_swapping_data(int, int);
 };
 void list::insertatbegin(int data)
 {
@@ -375,14 +376,51 @@ void list::delete_duplicates_from_sortedll()
 	}
 }
 
+void list::swap_nodes_without_swapping_data(int x, int y)
+{
+	node *current_x,*current_y,*prev_x=NULL,*prev_y=NULL;
+	int flag_x,flag_y;
+	flag_x=flag_y=0;
+	current_x=current_y=head;
+	if(head==NULL)
+		return;
+	if(x == y)
+		return;
+	while(current_x && current_x->data!=x)
+	{
+		prev_x=current_x;
+		current_x=current_x->next;
+		flag_x=1;
+	}
+	while(current_y && current_y->data!=y)
+	{
+		prev_y=current_y;
+		current_y=current_y->next;
+		flag_y=1;
+	}
+	if(flag_x != 1 && flag_y != 1)
+		return;
+	if (prev_x != NULL)
+       prev_x->next = current_y;
+   else 
+       head = current_y;
+   if (prev_y != NULL)
+       prev_y->next = current_x;
+   else
+       head = current_x;
+   node *temp = current_y->next; 
+   current_y->next = current_x->next;
+   current_x->next  = temp;
+}
+
 int main()
 {
-	int ch,data,pos,key;
+	int ch,data,pos,key,x,y;
 	list l;
 	while(1)
 	{
 		cout<<"\n**** MENU ****"<<endl;
-        cout<<"1:INSERT_AT_BEGIN\n2:INDERT_AT_LAST\n3:INSERT_AT_LOCATION\n4:DELETE_FIRST_NODE\n5:DELETE_LASTNODE\n6:DELETE_INTERMEDIATENODE\n7:DISPLAY\n8:DELETE LINKED LIST \n9:SEARCH_ELEMENT\n10:GET_NODE\n11:GET NODE FROM END\n12:GET_MIDDLE_ELEMENT\n13:COUNT_GIVEN_KEY\n14:DETECT_LOOP\n15:CHECK_IF_PALINDROME\n16:DELETE_DUPLICATE_FROM_SORTED_LINKED_LIST\n17:EXIT\n";
+        cout<<"1:INSERT_AT_BEGIN\n2:INDERT_AT_LAST\n3:INSERT_AT_LOCATION\n4:DELETE_FIRST_NODE\n5:DELETE_LASTNODE\n6:DELETE_INTERMEDIATENODE\n7:DISPLAY\n8:DELETE LINKED LIST \n9:SEARCH_ELEMENT\n10:GET_NODE\n11:GET NODE FROM END\n12:GET_MIDDLE_ELEMENT\n13:COUNT_GIVEN_KEY\n14:DETECT_LOOP\n15:CHECK_IF_PALINDROME\n16:DELETE_DUPLICATE_FROM_SORTED_LINKED_LIST\n17:SWAP_NODES_WITHOUT_SWAPPING_DATA\n18:EXIT\n";
         cout<<"\nEnter Your Choice:";
         cin>>ch;
         switch(ch)
@@ -435,7 +473,10 @@ int main()
         			 break;
         	case 16: l.delete_duplicates_from_sortedll();
         			 break;
-        	case 17: return 0;
+        	case 17: cin>>x>>y;
+        			 l.swap_nodes_without_swapping_data(x,y);
+        			 break;
+        	case 18: return 0;
         }
 	}
 	return 0;
