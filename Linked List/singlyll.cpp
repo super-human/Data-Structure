@@ -1,6 +1,4 @@
-#include <iostream>
-#include <stdlib.h>
-#include<stack>
+#include<bits/stdc++.h>
 using namespace std;
 
 class node
