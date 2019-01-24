@@ -9,11 +9,11 @@ public:
 	int data;
 	node* next;
 };
-class list:public node
+class linkedlist:public node
 {
 	node *head,*tail;
 public:
-	list()
+	linkedlist()
 	{
 		head=NULL;
 		tail=NULL;
@@ -36,7 +36,7 @@ public:
 	void delete_duplicates_from_sortedll();
 	void swap_nodes_without_swapping_data(int, int);
 };
-void list::insertatbegin(int data)
+void linkedlist::insertatbegin(int data)
 {
 	node *temp=new node;
 	temp->data=data;
@@ -53,7 +53,7 @@ void list::insertatbegin(int data)
 	}
 
 }
-void list::insertatlast(int data)
+void linkedlist::insertatlast(int data)
 {
 	node *temp=new node;
 	temp->data=data;
@@ -69,7 +69,7 @@ void list::insertatlast(int data)
 		tail=temp;
 	}
 }
-void list::insertatlocation(int data,int p)
+void linkedlist::insertatlocation(int data,int p)
 {
 	node *temp=new node;
 	node *ptr,*prev;
@@ -105,7 +105,7 @@ void list::insertatlocation(int data,int p)
 		}
 	}
 }
-void list::display()
+void linkedlist::display()
 {
 	node *ptr=head;
 	int count=0;
@@ -117,7 +117,7 @@ void list::display()
 	}
 	cout<<"Length of linked list: "<<count<<endl;
 }
-int list::delete_firstnode()
+int linkedlist::delete_firstnode()
 {
 	node *ptr;
 	int del_data;
@@ -135,7 +135,7 @@ int list::delete_firstnode()
 		return del_data;
 	}
 }
-int list::delete_lastnode()
+int linkedlist::delete_lastnode()
 {
 
 	if(head==NULL)
@@ -161,7 +161,7 @@ int list::delete_lastnode()
 		return del_data;
 	}
 }
-int list::delete_intermediatenode(int pos)
+int linkedlist::delete_intermediatenode(int pos)
 {
 	
 	if(head==NULL)
@@ -188,7 +188,7 @@ int list::delete_intermediatenode(int pos)
 	}
 }
 
-void list::delete_linkedlist()
+void linkedlist::delete_linkedlist()
 {
 	node *current,*ptr;
 	current = head;
@@ -201,7 +201,7 @@ void list::delete_linkedlist()
 	head=NULL;
 }
 
-void list::search_element(int x)
+void linkedlist::search_element(int x)
 {
 	node *ptr=head;
 	while(ptr!=NULL)
@@ -216,7 +216,7 @@ void list::search_element(int x)
 	cout<<"Element not Found"<<endl;
 }
 
-void list::get_node(int pos)
+void linkedlist::get_node(int pos)
 {
 	node *ptr=head;
 	int k=1;
@@ -242,8 +242,8 @@ void list::get_node(int pos)
 	}
 }
 
-void list::get_node_from_end(int pos)
-{
+void linkedlist::get_node_from_end(int pos)
+{	
 	node *ptr=head;
 	int k=1,count=0;
 	if(head==NULL)
@@ -275,7 +275,7 @@ void list::get_node_from_end(int pos)
 		return;
 	}
 }
-void list::middle_element()
+void linkedlist::middle_element()
 {
 	node *fast_ptr,*slow_ptr;
 	fast_ptr=slow_ptr=head;
@@ -287,7 +287,7 @@ void list::middle_element()
 	cout<<slow_ptr->data<<endl;
 }
 
-void list::count_given_key(int key)
+void linkedlist::count_given_key(int key)
 {
 	node *ptr=head;
 	int count = 0;
@@ -303,7 +303,7 @@ void list::count_given_key(int key)
 	}
 }
 
-bool list::detect_loop()
+bool linkedlist::detect_loop()
 {
 	node *fast_ptr,*slow_ptr;
 	fast_ptr=slow_ptr=head;
@@ -335,7 +335,7 @@ bool list::detect_loop()
 	return false;
 }
 
-bool list::IsPalindrome()
+bool linkedlist::IsPalindrome()
 {
 	node *ptr=head;
 	stack<int>s;
@@ -355,7 +355,7 @@ bool list::IsPalindrome()
 	return true;
 }
 
-void list::delete_duplicates_from_sortedll()
+void linkedlist::delete_duplicates_from_sortedll()
 {
 	node *current,*ptr;
 	current=head;
@@ -376,7 +376,7 @@ void list::delete_duplicates_from_sortedll()
 	}
 }
 
-void list::swap_nodes_without_swapping_data(int x, int y)
+void linkedlist::swap_nodes_without_swapping_data(int x, int y)
 {
 	node *current_x,*current_y,*prev_x=NULL,*prev_y=NULL;
 	int flag_x,flag_y;
@@ -416,7 +416,7 @@ void list::swap_nodes_without_swapping_data(int x, int y)
 int main()
 {
 	int ch,data,pos,key,x,y;
-	list l;
+	linkedlist l;
 	while(1)
 	{
 		cout<<"\n**** MENU ****"<<endl;
