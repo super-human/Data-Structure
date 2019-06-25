@@ -69,7 +69,7 @@ void linkedlist::insertatlast(int data)
 		tail=temp;
 	}
 }
-void linkedlist::insertatlocation(int data,int p)
+void linkedlist::insertatlocation(int data,int p)	//Only 1 pointer needed to track the position
 {
 	node *temp=new node;
 	node *ptr;
@@ -163,7 +163,7 @@ int linkedlist::delete_lastnode()
 		return del_data;
 	}
 }
-int linkedlist::delete_intermediatenode(int pos)
+int linkedlist::delete_intermediatenode(int pos)	// 2 pointer needed previous as well as current pointer
 {
 	
 	if(head==NULL)
