@@ -177,16 +177,21 @@ int linkedlist::delete_intermediatenode(int pos)
 		ptr=head;
 		prev=head;
 		int count=1;
-		while(count<pos)
+		for(int i=1;i<=pos-1 && ptr; i++)
 		{
 			prev=ptr;
 			ptr=ptr->next;
 			count++;
 		}
-		prev->next=ptr->next;
-		int del_data=ptr->data;
-		free(ptr);
-		return del_data;
+		if(ptr)
+		{
+			prev->next=ptr->next;
+			int del_data=ptr->data;
+			free(ptr);
+			return del_data;
+		}
+		cout<<"Wrong Position"<<endl;
+		return 0;
 	}
 }
 
