@@ -1,4 +1,6 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <stdlib.h>
+#include<stack>
 using namespace std;
 
 class node
@@ -79,6 +81,7 @@ void linkedlist::insertatlocation(int data,int p)
 		cout<<"Position does not exist"<<endl;
 		return;
 	}
+	
 	else if(p == 1)
 	{
 		temp->next = head;
@@ -192,6 +195,7 @@ int linkedlist::delete_intermediatenode(int pos)
 		}
 		cout<<"Wrong Position"<<endl;
 		return 0;
+		
 	}
 }
 
