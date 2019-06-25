@@ -72,7 +72,7 @@ void linkedlist::insertatlast(int data)
 void linkedlist::insertatlocation(int data,int p)
 {
 	node *temp=new node;
-	node *ptr,*prev;
+	node *ptr;
 	temp->data=data;
 	temp->next=NULL;
 	if(head==NULL && p>1)
@@ -89,18 +89,16 @@ void linkedlist::insertatlocation(int data,int p)
 	else
 	{
 		ptr=head;
-		prev=head;
-		for (int i = 1; i <= p-1 && ptr; ++i)
+		for (int i = 1; i <= p-1 && ptr; ++i)	//Inserting node after pos given
 		{
-			/* code */
-			prev=ptr;
+			/* code */		//ptr must move p-1 node
 			ptr=ptr->next;
 		}
 		
 		if(ptr)
 		{
-			temp->next=ptr;
-			prev->next=temp;
+			temp->next=ptr->next;
+			ptr->next=temp;
 		}
 		else
 		{
