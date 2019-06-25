@@ -73,7 +73,6 @@ void linkedlist::insertatlocation(int data,int p)
 {
 	node *temp=new node;
 	node *ptr,*prev;
-	int count=1;
 	temp->data=data;
 	temp->next=NULL;
 	if(head==NULL && p>1)
@@ -91,14 +90,14 @@ void linkedlist::insertatlocation(int data,int p)
 	{
 		ptr=head;
 		prev=head;
-		while(count!=p && ptr!=NULL)
+		for (int i = 1; i <= p-1 && ptr; ++i)
 		{
+			/* code */
 			prev=ptr;
 			ptr=ptr->next;
-			count++;
 		}
 		
-		if(p<=count+1)
+		if(ptr)
 		{
 			temp->next=ptr;
 			prev->next=temp;
@@ -179,12 +178,12 @@ int linkedlist::delete_intermediatenode(int pos)
 		node *ptr,*prev;
 		ptr=head;
 		prev=head;
-		int count=1;
+		
 		for(int i=1;i<=pos-1 && ptr; i++)
 		{
 			prev=ptr;
 			ptr=ptr->next;
-			count++;
+			
 		}
 		if(ptr)
 		{
