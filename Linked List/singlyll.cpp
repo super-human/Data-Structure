@@ -79,7 +79,11 @@ void linkedlist::insertatlocation(int data,int p)
 		cout<<"Position does not exist"<<endl;
 		return;
 	}
-	
+	else if(p == 1)
+	{
+		temp->next = head;
+		head=temp;
+	}
 	else
 	{
 		ptr=head;
