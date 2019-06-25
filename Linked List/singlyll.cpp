@@ -320,25 +320,8 @@ bool linkedlist::detect_loop()
 	{
 		fast_ptr=fast_ptr->next->next;
 		slow_ptr=slow_ptr->next;
-		if(b==0)
-		{
-			if(fast_ptr==slow_ptr)
-			{
-				b=1;
-				continue;
-			}
-			continue;			
-		}
-		
-		if(b==1)
-		{
-			if(fast_ptr==slow_ptr)
-			{
-				cout<<"Length of loop: "<<count<<endl;
-				return true;
-			}
-			count++;
-		}
+		if(fast_ptr == slow_ptr)
+			return true;
 	}
 	return false;
 }
