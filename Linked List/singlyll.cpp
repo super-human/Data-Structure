@@ -75,13 +75,13 @@ void linkedlist::insertatlocation(int data,int p)	//Only 1 pointer needed to tra
 	node *ptr;
 	temp->data=data;
 	temp->next=NULL;
-	if(head==NULL && p>1)
+	if(head==NULL && p>0)
 	{
 		cout<<"Position does not exist"<<endl;
 		return;
 	}
 	
-	else if(p == 1)
+	else if(p == 0)
 	{
 		temp->next = head;
 		head=temp;
@@ -94,12 +94,19 @@ void linkedlist::insertatlocation(int data,int p)	//Only 1 pointer needed to tra
 			/* code */		//ptr must move p-1 node
 			ptr=ptr->next;
 		}
-		
-		if(ptr)
+		if (ptr->next == NULL)
+		{
+			/* code */
+			temp->next=NULL;
+			ptr->next = temp;
+			tail = temp;
+		}
+		else if(ptr)
 		{
 			temp->next=ptr->next;
 			ptr->next=temp;
 		}
+
 		else
 		{
 			cout<<"Wrong position"<<endl;
