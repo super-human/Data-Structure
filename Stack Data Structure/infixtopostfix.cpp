@@ -1,6 +1,4 @@
-#include<iostream>
-#include<stack>
-#include<string>
+#include<bits/stdc++.h>
 using namespace std;
 
 int isOperand(char s)
@@ -19,9 +17,9 @@ int Pre(char s)
 	return 0;
 }
 
-void convert(string exp)
+char* convert(string exp)
 {
-	char post[100];
+	char *post = new char[exp.length()];
 	stack<char> S;
 	S.push('#');
 	int i,j;
@@ -47,13 +45,14 @@ void convert(string exp)
 		post[j++] = S.top();
 		S.pop();
 	}
-	cout<<post<<endl;
+	post[j-1] = '\0';
+	return post;
 }
 
 int main(int argc, char const *argv[])
 {
 	string str;
 	cin>>str;
-	convert(str);
+	cout<<convert(str)<<endl;
 	return 0;
 }
