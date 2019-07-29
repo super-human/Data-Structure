@@ -66,7 +66,7 @@ void list::insertatlocation(int data, int pos)
 {
 	node *temp=new node;
 	temp->data=data;
-	if(head==NULL && pos>1)
+	if(head==NULL && pos>0)
 	{
 		cout<<"Position doesn't exist"<<endl;
 		return;
@@ -75,7 +75,7 @@ void list::insertatlocation(int data, int pos)
 	{
 		node *ptr;
 		ptr=head;
-		int count=1;
+		int count=0;
 		while(count<pos && ptr!=NULL)
 		{
 			ptr=ptr->next;
