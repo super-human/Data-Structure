@@ -116,6 +116,7 @@ int list::delete_firstnode()
 		node *ptr=head;
 		int del_data;
 		head=head->next;
+		head->prev = NULL;
 		del_data=ptr->data;
 		free(ptr);
 		return del_data;
