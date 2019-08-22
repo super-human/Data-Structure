@@ -20,70 +20,77 @@ int Pre(char x)
 
 int postfixevaluation(std::string exp)
 {
-	std::stack<int> s1;
-	std::stack<char> s2;
-	int i,x,y,z,key;
+	std::stack<int> operandStack;
+	std::stack<char> operatorStack;
+	int i,x,y,z,operand;
 	i=0;
 	while(exp[i]!='\0')
 	{
+		if(exp[i]==' ' || exp[i]==',')
+		{
+			i++;
+			continue;
+		}
 		
 		if(isoperand(exp[i]))
 		{
-			key = exp[i]-'0';
-			s1.push(key);
-			i++;
+			operand = 0;
+			while(i<exp.length() && isoperand(exp[i]))
+				operand = operand*10 + (exp[i++]-'0');
+			operandStack.push(operand);
+			
 		}
-		else if(!isoperand(exp[i]) && s2.empty())
-			s2.push(exp[i++]);
-		else if(!isoperand(exp[i]) && !s2.empty())
+		else if(!isoperand(exp[i]) && operatorStack.empty())
+			operatorStack.push(exp[i++]);
+		else if(!isoperand(exp[i]) && !operatorStack.empty())
 		{
 			if(exp[i]=='(')
-				s2.push(exp[i++]);
-			else if(Pre(exp[i])>Pre(s2.top()) && exp[i]!=')')
-				s2.push(exp[i++]);
-			else if(exp[i]==')' && s2.top() == '(')
+				operatorStack.push(exp[i++]);
+			else if(Pre(exp[i])>Pre(operatorStack.top()) && exp[i]!=')')
+				operatorStack.push(exp[i++]);
+			else if(exp[i]==')' && operatorStack.top() == '(')
 			{
-				s2.pop();
+				operatorStack.pop();
 				i++;
 			}
 			
 			else
 			{
-				x = s1.top();
-				s1.pop();
-				y = s2.top();
-				s2.pop();
-				z = s1.top();
-				s1.pop();
+				x = operandStack.top();
+				operandStack.pop();
+				y = operatorStack.top();
+				operatorStack.pop();
+				z = operandStack.top();
+				operandStack.pop();
 				if(y == '+')
-					s1.push(z+x);
+					operandStack.push(z+x);
 				else if(y == '-')
-					s1.push(z-x);
+					operandStack.push(z-x);
 				else if(y == '*')
-					s1.push(x*z);
+					operandStack.push(x*z);
 				else if(y == '/')
-					s1.push(z/x);
+					operandStack.push(z/x);
 			} 
 		}
 	}
-	while(!s2.empty())
+	while(!operatorStack.empty())
 	{
-		x = s1.top();
-		s1.pop();
-		y = s2.top();
-		s2.pop();
-		z = s1.top();
-		s1.pop();
+		x = operandStack.top();
+		operandStack.pop();
+		y = operatorStack.top();
+		operatorStack.pop();
+		z = operandStack.top();
+		operandStack.pop();
 		if(y == '+')
-			s1.push(x+z);
+			operandStack.push(x+z);
 		else if(y == '-')
-			s1.push(z-x);
+			operandStack.push(z-x);
 		else if(y == '*')
-			s1.push(x*z);
+			operandStack.push(x*z);
 		else if(y == '/')
-			s1.push(z/x);
+			operandStack.push(z/x);
 	}
-	return s1.top();
+	return operandStack.top();
 }
 
 int main(int argc, char const *argv[])
