@@ -81,8 +81,7 @@ void AdvanceStack::push(int x)
 	else
 	{
 		Stack::push(x);
-		int y = minStack.peek();
-		if(x<=y)
+		if(x<=minStack.peek())
 			minStack.push(x);
 	}
 }
