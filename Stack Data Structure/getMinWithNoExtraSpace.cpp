@@ -2,7 +2,7 @@
 #include<string.h>
 #include<climits>
 
-//Design a stack such that access to the minimum element in the stack is O(1)
+//Design a stack such that access to the minimum element in the stack is O(1) with O(1) extra space
 
 
 class Stack
