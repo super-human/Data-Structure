@@ -5,7 +5,7 @@
 
 // Given an array of characters  formed with a's and b's with special character X which represents middle of the list.
 // Check for the palindrome.
-
+// Time complexity O(n) and Space Commplexity O(n/2)=O(n).
 int main(int argc, char const *argv[])
 {
 	std::string exp;
