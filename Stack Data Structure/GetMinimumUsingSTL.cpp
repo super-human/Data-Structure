@@ -1,7 +1,7 @@
 #include<iostream>
 #include <stack>
 
-//Design a stack such that access to the minimum element in the stack is O(1)
+//Using,not designing the stack stl such that access to the minimum element in the stack is O(1)
 
 int main(int argc, char const *argv[])
 {
