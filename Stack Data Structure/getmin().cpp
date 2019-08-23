@@ -1,7 +1,7 @@
 #include<iostream>
 #include<string.h>
 
-//Design a stack such that access to the minimum element in the stack is O(1)
+//Design a stack such that access to the minimum element in the stack is O(1) time and O(n) extra space
 
 
 class Stack
