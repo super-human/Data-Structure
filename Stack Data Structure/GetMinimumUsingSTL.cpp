@@ -18,6 +18,14 @@ int main(int argc, char const *argv[])
 			if(elementStack.top()<minStack.top())
 				minStack.push(element);
 	}
+	std::cout<<"Enter no. of elements you want to pop"<<std::endl;
+	std::cin>>no_of_elements;
+	while(no_of_elements--)
+	{
+	    if(elementStack.top() == minStack.top())
+	        minStack.pop();
+	   elementStack.pop();
+	}
 	std::cout<<"Minimum element in the stack is :"<<minStack.top()<<std::endl;
 	return 0;
 }
