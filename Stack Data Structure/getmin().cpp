@@ -18,7 +18,7 @@ public:
 	}
 	void push(int x)
 	{
-		if(top == capacity-1)
+		if(isFull())
 			doublestack();
 
 		st[++top]=x;
@@ -26,7 +26,7 @@ public:
 	}
 	int pop()
 	{
-		if(top==-1)
+		if(isEmpty())
 			std::cout<<"Underflow"<<std::endl;
 		else
 			return st[top--];
