@@ -15,12 +15,8 @@ int main(int argc, char const *argv[])
 		if(minStack.empty())
 			minStack.push(element);
 		else
-		{
 			if(elementStack.top()<minStack.top())
 				minStack.push(element);
-			else
-				minStack.push(minStack.top());
-		}
 	}
 	std::cout<<"Minimum element in the stack is :"<<minStack.top()<<std::endl;
 	return 0;
