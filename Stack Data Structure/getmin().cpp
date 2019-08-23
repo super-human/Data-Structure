@@ -89,7 +89,9 @@ void AdvanceStack::push(int x)
 int AdvanceStack::pop()
 {
 	int x=Stack::pop();
-	minStack.pop();
+	int y = minStack.pop();
+	if(y!=x)
+		minStack.push(y);
 	return x;
 }
 
