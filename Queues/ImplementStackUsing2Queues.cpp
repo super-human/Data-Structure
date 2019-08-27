@@ -55,6 +55,11 @@ int top()
     return t; 
 }
 
+int size()
+{
+	return curr_size;
+}
+
 int main(int argc, char const *argv[])
 {
 	push(3);
@@ -65,7 +70,9 @@ int main(int argc, char const *argv[])
 	push(9);
 	push(8);
 	push(4);
-	std::cout<<pop()<<" ";
+	std::cout<<pop()<<std::endl;
+	std::cout<<"Top element "<<top()<< '\n';
+	std::cout<<"Size of stack " <<size();
 	std::cout<<'\n';
 	return 0;
 }
