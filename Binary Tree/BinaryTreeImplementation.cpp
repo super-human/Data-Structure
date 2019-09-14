@@ -60,6 +60,31 @@ public:
 		height(root);
 	}
 	int height(tree_node*);
+	int recursivemaximum()
+	{
+		recursivemaximum(root);
+	}
+	int recursivemaximum(tree_node*);
+	int iterativemaximum()
+	{
+		iterativemaximum(root);
+	}
+	int iterativemaximum(tree_node*);
+	void rdeletebinarytree()
+	{
+		rdeletebinarytree(root);
+	}
+	void rdeletebinarytree(tree_node*);
+	void levelorderdeletion()
+	{
+		levelorderdeletion(root);
+	}
+	void levelorderdeletion(tree_node*);
+	int delete_element(int x)
+	{
+		delete_element(root,x);
+	}
+	int delete_element(tree_node*,int);
 };
 
 void tree::create_tree()
@@ -167,6 +192,96 @@ int tree::height(tree_node* q)
 	else
 		return y+1;
 }
+
+int tree::recursivemaximum(tree_node *root)
+{
+	int max_value = INT_MIN;
+	if(root != NULL)
+	{
+		int root_val = root->data;
+		int lresult = recursivemaximum(root->lchild);
+		int rresult = recursivemaximum(root->rchild);
+		if(lresult > rresult)
+			max_value = lresult;
+		else
+			max_value = rresult;
+		if(root_val > max_value)
+			max_value = root_val;
+	}
+	return max_value;
+}
+
+int tree::iterativemaximum(tree_node* root)
+{
+	int max = INT_MIN;
+	std::queue<tree_node*> q;
+	q.push(root);
+	while(!q.empty())
+	{
+		tree_node* temp = q.front();
+		q.pop();
+		if(temp->data > max)
+			max = temp->data;
+		if(temp->lchild)
+			q.push(temp->lchild);
+		if(temp->rchild)
+			q.push(temp->rchild);
+	}
+	return max;
+}
+
+void tree::rdeletebinarytree(tree_node* root)
+{
+	if(root == NULL)
+		return;
+	rdeletebinarytree(root->lchild);
+	rdeletebinarytree(root->rchild);
+	free(root);
+}
+
+void tree::levelorderdeletion(tree_node* root)
+{
+	if(root == NULL)
+		return;
+	std::queue<tree_node*> q;
+	q.push(root);
+	while(!q.empty())
+	{
+		tree_node* temp = new tree_node;
+		q.pop();
+		if(temp->lchild)
+			q.push(temp->lchild);
+		if(temp->rchild)
+			q.push(temp->rchild);
+		free(temp);
+	}
+}
+ 
+int tree::delete_element(tree_node* root, int x)
+{
+	int y = -1;
+	if(root == NULL)
+		return y;
+	std::queue<tree_node*> q;
+	q.push(root);
+	while(!q.empty())
+	{
+		tree_node* temp = q.front();
+		q.pop();
+		if(temp->data == x)
+		{
+			y = temp->data;
+			free(temp);
+			return y;
+		}
+		if(temp->lchild)
+			q.push(temp->lchild);
+		if(temp->rchild)
+			q.push(temp->rchild);
+	}
+	return y;
+}
+
 int main()
 {
 	tree t;
@@ -183,7 +298,10 @@ int main()
 	std::cout<<"levelorder Traversal: ";
 	t.levelorder();
 	std::cout<<'\n';
-	std::cout<<t.count()<<'\n';
-	std::cout<<t.height()<<'\n';
+	std::cout<<"No. of nodes "<<t.count()<<'\n';
+	std::cout<<"Height of the tree "<<t.height()<<'\n';
+	std::cout<<"Maximum element in the tree using Recursive approach "<<t.recursivemaximum()<<'\n';
+	std::cout<<"Maximum element in the tree using Iterative approach "<<t.iterativemaximum()<<'\n';
+	std::cout<<t.delete_element(8)<<'\n';
 	return 0;
 }
