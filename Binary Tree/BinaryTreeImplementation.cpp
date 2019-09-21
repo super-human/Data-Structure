@@ -4,12 +4,12 @@
 #include<algorithm>
 #include<queue>
 #include<stack>
-#include<queue>
 #include<cstring>
 #include<cmath>
+#define ll long long
+#define mod 1000000007
 
-// Binary Tree Creation & Traversal(Inorder,PreOrder,PostOrder,LevelOrder)
-
+int path[1000];
 class tree_node
 {
 public: 
@@ -85,6 +85,12 @@ public:
 		delete_element(root,x);
 	}
 	int delete_element(tree_node*,int);
+	void printpath(int pathlen)
+	{
+		printpath(root,pathlen);
+	}
+	void printpath(tree_node*,int);
+	void printArray(int[], int);
 };
 
 void tree::create_tree()
@@ -282,6 +288,27 @@ int tree::delete_element(tree_node* root, int x)
 	return y;
 }
 
+void tree::printpath(tree_node* root,int pathlen)
+{
+	if(root == NULL)
+		return;
+	path[pathlen++] = root->data;
+	if(root->lchild == NULL && root->rchild == NULL)
+		printArray(path,pathlen);
+	else
+	{
+		printpath(root->lchild,pathlen);
+		printpath(root->rchild,pathlen);
+	}
+}
+
+void tree::printArray(int x[], int len)
+{
+	for(int i = 0;i<len; i++)
+		std::cout<<x[i]<<" ";
+	std::cout<<'\n';
+}
+
 int main()
 {
 	tree t;
@@ -303,5 +330,6 @@ int main()
 	std::cout<<"Maximum element in the tree using Recursive approach "<<t.recursivemaximum()<<'\n';
 	std::cout<<"Maximum element in the tree using Iterative approach "<<t.iterativemaximum()<<'\n';
 	std::cout<<t.delete_element(8)<<'\n';
+	t.printpath(0);
 	return 0;
 }
