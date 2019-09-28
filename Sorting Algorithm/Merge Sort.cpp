@@ -1,5 +1,8 @@
 #include<bits/stdc++.h>
 
+//Worst = Best = Average = O(nlogn)
+// Space = O(n) Auxillary Space
+
 void merge(int arr[], int l, int mid, int h)
 {
     int i,j,k;
