@@ -21,7 +21,7 @@ int main(int argc, char const *argv[])
 			s.push(i++);
 		else
 		{
-			ans[s.top()] = arr[i];
+			ans[s.top()] = i-s.top();
 			s.pop();				//pop till incoming element is greater
 		}
 	}
