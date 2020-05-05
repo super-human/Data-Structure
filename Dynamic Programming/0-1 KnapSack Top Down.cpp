@@ -29,12 +29,12 @@ int Knapsack(int val[], int weight[], int w, int n)
 
 int main()
 {
-    memset(t,-1,sizeof(t));
-    ll t,n,w;
+    ll testcases,n,w;
     std::string s;
-    std::cin>>t;
-    while(t--)
+    std::cin>>testcases;
+    while(testcases--)
     {
+        memset(t,-1,sizeof(t));
         std::cin>>n>>w;
         int val[n], weight[n];
         for(int i = 0; i<n; i++)
