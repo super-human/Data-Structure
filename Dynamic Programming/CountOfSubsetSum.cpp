@@ -32,11 +32,12 @@ int SubsetSum(int arr[], int sum, int n)
 
 int main()
 {
-    memset(t,-1,sizeof(t));
-    ll t,n,sum;
-    std::cin>>t;
-    while(t--)
+    
+    ll testcases,n,sum;
+    std::cin>>testcases;
+    while(testcases--)
     {
+        memset(t,-1,sizeof(t));
         std::cin>>n>>sum;
         int arr[n];
         for(int i = 0; i<n; i++)
