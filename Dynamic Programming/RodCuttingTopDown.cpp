@@ -29,12 +29,11 @@ int rodcutting(int length[], int price[], int len, int n)
 
 int main()
 {
-    int testcases,n,sum,diff,len;
+    int testcases,n,len;
     std::cin>>testcases;
     while(testcases--)
     {
         memset(t,-1,sizeof(t));
-        sum = 0;
         std::cin>>n;  
         int length[n], price[n];
         for(int i = 0; i<n; i++)
