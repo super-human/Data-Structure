@@ -22,7 +22,7 @@
 }
 */
 
-// Detect Cycle in an Directed Graph using DFS
+// Detect Cycle in an Directed Graph
 
 
 void addEdge(std::vector<int> adj[], int edges) {
