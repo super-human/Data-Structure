@@ -49,7 +49,6 @@ void BFS(std::vector<int> adj[], int vertices, int edges, int s) {
     }
 }
 
-// No Topological sort in cyclic graph
 
 int main()
 {
