@@ -66,11 +66,12 @@ int main()
         std::cin>>u>>v;
         unionOp(u, v, parent, rank);
     }
-    std::cout<<"parent -> "<<std::endl;
+    std::cout<<"parent -> ";
     for(int i = 0; i<n; i++) {
         std::cout<<parent[i]<<" ";
     }
-    std::cout<<"rank -> "<<std::endl;
+    std::cout<<std::endl;
+    std::cout<<"rank -> ";
     for(int i = 0; i<n; i++) {
         std::cout<<rank[i]<<" ";
     }
