@@ -25,7 +25,7 @@ typedef std::pair<int, int> iPair;
 }
 */
 
-// Dijkstra Implementation
+// Floyd Warshall Implementation
 
 void FloydWarshall(std::vector<std::vector<int>> &graph, int V) {
     int dis[V][V];
