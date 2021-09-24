@@ -38,7 +38,7 @@ bool isCyclic(std::vector<int> adj[], int s, std::vector<bool> &visited, int par
     visited[s] = true;
     for(int i: adj[s]) {
         if(i!= parent) {    // To check if the node is not adjacent
-            if(visited[i])
+            if(visited[i])  // Node is already visited and it's not an adjacent node hence cycle is present
                 return true;
             if(!visited[i] && isCyclic(adj, i, visited, s)) {
                 return true;
