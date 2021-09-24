@@ -37,7 +37,7 @@ void addEdge(std::vector<int> adj[], int edges) {
 bool isCyclic(std::vector<int> adj[], int s, std::vector<bool> &visited, int parent) {
     visited[s] = true;
     for(int i: adj[s]) {
-        if(i!= parent) {
+        if(i!= parent) {    // To check if the node is not adjacent
             if(visited[i])
                 return true;
             if(!visited[i] && isCyclic(adj, i, visited, s)) {
