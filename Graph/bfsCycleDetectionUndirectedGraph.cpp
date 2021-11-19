@@ -20,35 +20,52 @@
 
 typedef std::pair<int, int> iPair;
 
-// Detect cycle using BFS Implementation
 
+void addEdge(std::vector<int> adj[], int edges) {
+    int u, v;
+    for(int i = 0; i<edges; i++) {
+        std::cin>>u>>v;
+        adj[u].pb(v);
+        adj[v].pb(u);
+    }
+}
 
-bool BFSCycle(std::vector<int> adj[], std::vector<bool> &visited,int s) {
-    visited[s] = true;
+// void printGraph(std::vector<int> adj[], int V) {
+//     for(int i = 0; i<V; i++) {
+//         std::cout<< i <<"=> ";
+//         for(int x: adj[i]) {
+//             std::cout<<x<<" ";
+//         }
+//         std::cout<<std::endl;
+//     }
+// }
+
+bool BFS(std::vector<int> adj[], int s, std::vector<bool> &visited) {
     std::queue<iPair> q;
+    visited[s] = true;
     q.push({s, -1});
     while(!q.empty()) {
-        int u = q.front().first;
+        int x = q.front().first;
         int parent = q.front().second;
         q.pop();
-        for(int v: adj[u]) {
-            if(visited[v] && u != parent) {    // If its not an adjacent node but visited then there is a cycle
+        for(int u: adj[x]) {
+            if(!visited[u]) {
+                visited[u] = true;
+                q.push({u, x});
+            } else if(u != parent) {
                 return true;
-            } else {
-                q.push({v, u});
             }
         }
     }
     return false;
 }
 
-bool BFS(std::vector<int> adj[], int V) {
+
+bool isCyclic(std::vector<int> adj[], int V) {
     std::vector<bool> visited(V, false);
-    for(int i = 0; i<V; i++) {
-        if(!visited[i]) {
-            if(BFSCycle(adj, visited, i)) {
-                return true;
-            }
+    for(int i = 0; i< V; i++) {
+        if(!visited[i] && BFS(adj, i, visited)) {
+            return true;
         }
     }
     return false;
@@ -57,18 +74,11 @@ bool BFS(std::vector<int> adj[], int V) {
 int main()
 {
     std::ios_base::sync_with_stdio(false);std::cin.tie(NULL);std::cout.tie(NULL);
-    int V, E, u, v;
+    int V, E;
     std::cin>>V>>E;
     std::vector<int> adj[V];
-    for(int i = 0; i<E; i++) {
-        std::cin>>u>>v;
-        adj[u].pb(v);
-        adj[v].pb(u);
-    }
-    if(BFS(adj, V)) {
-        std::cout<<"Cycle is Present"<<std::endl;
-    } else {
-        std::cout<<"Cycle not Present"<<std::endl;
-    }
+    addEdge(adj, E);
+    std::cout<<isCyclic(adj, V)<<std::endl;
+    // printGraph(adj, V);
     return 0;
 }
